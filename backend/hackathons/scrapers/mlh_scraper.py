@@ -7,10 +7,11 @@ from selenium.webdriver.firefox.options import Options
 class MLHScraper:
     def __init__(self):
         self.options = Options()
+        self.options.add_argument("--headless")
         self.options.page_load_strategy = 'eager'
         self.options.binary_location = '/usr/bin/firefox'
         self.driver = webdriver.Firefox(options=self.options)
-        self.driver.minimize_window()
+        # self.driver.minimize_window()
         self.url = "https://mlh.io/seasons/2024/events"
 
     def scrape(self):

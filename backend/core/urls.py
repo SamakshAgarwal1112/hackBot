@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path,include
 from rest_framework import routers
 from bookmarks.views import BookmarkViewSet
-from hackathons.views import MLHEventsView
+from hackathons.views import MLHEventsView, DFEventsView, DPEventsView, USEventsView
 
 router = routers.DefaultRouter()
 router.register(r'bookmarks',BookmarkViewSet)
@@ -27,5 +27,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('hackathons/',include('hackathons.urls')),
     path('bookmarks/',include(router.urls)),
-    path('mlh',MLHEventsView.as_view(),name='mlh_events'),
+    path('mlh/',MLHEventsView.as_view(),name='mlh_events'),
+    path('devfolio/',DFEventsView.as_view(),name='devfolio_events'),
+    path('devpost/',DPEventsView.as_view(),name='devpost_events'),
+    path('unstop/',USEventsView.as_view(),name='unstop_events'),
 ]
