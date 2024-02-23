@@ -16,8 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from rest_framework import routers
+from bookmarks.views import BookmarkViewSet
+from hackathons.views import MLHEventsView
+
+router = routers.DefaultRouter()
+router.register(r'bookmarks',BookmarkViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hackathons/',include('hackathons.urls')),
+    # path('hackathons/',include('hackathons.urls')),
+    path('bookmarks/',include(router.urls)),
+    path('mlh',MLHEventsView.as_view(),name='mlh_events'),
 ]
