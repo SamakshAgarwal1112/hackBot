@@ -37,8 +37,19 @@ class DFScraper:
     
     def scrape(self):
         data = req.get(f'{self.url}{self.get_unique_id()}/hackathons.json').json()
+        # self.close()
+        # return data["pageProps"]["dehydratedState"]["queries"][0]["state"]["data"]
+        all_events = []
+        for event in data["pageProps"]["dehydratedState"]["queries"][0]["state"]["data"]["upcoming_hackathons"]:
+            events_list = dict()
+            events_list['title'] = event['name']
+            events_list['date'] = event['starts_at']
+            events_list['url'] = event['settings']['site']
+            events_list['location'] = event['timezone']
+            events_list['mode'] = event['is_online']
+            all_events.append(events_list)
         self.close()
-        return data["pageProps"]["dehydratedState"]["queries"][0]["state"]["data"]
+        return all_events
         # for i in res["pageProps"]["dehydratedState"]["queries"][0]["state"]["data"]["upcoming_hackathons"]:
         #     print(i["name"]," ",i["starts_at"]," ",i["ends_at"]," ",i["is_online"])
             

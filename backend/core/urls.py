@@ -18,14 +18,14 @@ from django.contrib import admin
 from django.urls import path,include
 from rest_framework import routers
 from bookmarks.views import BookmarkViewSet
-from hackathons.views import MLHEventsView, DFEventsView, DPEventsView, USEventsView
+from hackathons.views import MLHEventsView, DFEventsView, DPEventsView, USEventsView, EventsView
 
 router = routers.DefaultRouter()
 router.register(r'bookmarks',BookmarkViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('hackathons/',include('hackathons.urls')),
+    path('hackathons/',EventsView.as_view(),name='hackathons'),
     path('bookmarks/',include(router.urls)),
     path('mlh/',MLHEventsView.as_view(),name='mlh_events'),
     path('devfolio/',DFEventsView.as_view(),name='devfolio_events'),
