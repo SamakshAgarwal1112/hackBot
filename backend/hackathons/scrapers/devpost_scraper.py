@@ -17,8 +17,8 @@ class DPScraper:
                     events_list = dict()
                     events_list['title'] = event['title']
                     events_list['date'] = event['submission_period_dates']
-                    events_list['url'] = event['url']
-                    events_list['location'] = event['open_state']
+                    events_list['url'] = event['url'] if event['url'] else "No Link"
+                    events_list['location'] = "Not Specified"
                     events_list['mode'] = event['displayed_location']['location']
                     all_events.append(events_list)
                 return all_events

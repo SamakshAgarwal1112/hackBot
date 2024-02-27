@@ -107,6 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 #White listing the localhost:3000 port
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:3000',
+    'http://localhost:5173',
 )
 
 

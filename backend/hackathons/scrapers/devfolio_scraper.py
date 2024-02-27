@@ -35,6 +35,16 @@ class DFScraper:
 
         return None
     
+    def format_date(self,start_date,end_date):
+        start_month = start_date[5:7]
+        end_month = end_date[5:7]
+        start = start_date[8:10]
+        end = end_date[8:10]
+        months = {
+            "01":"JAN","02":"FEB","03":"MAR","04":"APR","05":"MAY","06":"JUN","07":"JUL","08":"AUG","09":"SEP","10":"OCT","11":"NOV","12":"DEC"
+        }
+        return months[start_month]+" "+start+" - "+end if start_month==end_month else months[start_month]+" "+start+" - "+months[end_month]+" "+end
+    
     def scrape(self):
         data = req.get(f'{self.url}{self.get_unique_id()}/hackathons.json').json()
         # self.close()
@@ -43,10 +53,10 @@ class DFScraper:
         for event in data["pageProps"]["dehydratedState"]["queries"][0]["state"]["data"]["upcoming_hackathons"]:
             events_list = dict()
             events_list['title'] = event['name']
-            events_list['date'] = event['starts_at']
-            events_list['url'] = event['settings']['site']
-            events_list['location'] = event['timezone']
-            events_list['mode'] = event['is_online']
+            events_list['date'] = self.format_date(event['starts_at'],event['ends_at'])
+            events_list['url'] = event['settings']['site'] if event['settings']['site'] else "No Link"
+            events_list['location'] = "Not specified"
+            events_list['mode'] = event['is_online'] if event['is_online'] else "Offline"
             all_events.append(events_list)
         self.close()
         return all_events

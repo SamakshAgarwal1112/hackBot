@@ -24,7 +24,7 @@ class MLHScraper:
             events_list = dict()
             events_list['title'] = event.find_element(By.CSS_SELECTOR, "h3.event-name").text
             events_list['date'] = event.find_element(By.CSS_SELECTOR, "p.event-date").text
-            events_list['url'] = event.get_attribute("href")
+            events_list['url'] = event.get_attribute("href") if event.get_attribute('href') else "No Link"
             events_list['location'] = event.find_element(By.CSS_SELECTOR, "div.event-location").text
             events_list['mode'] = event.find_element(By.CSS_SELECTOR, "div.event-hybrid-notes").text
             all_events.append(events_list)
