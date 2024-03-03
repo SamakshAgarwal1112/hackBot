@@ -11,7 +11,6 @@ class MLHScraper:
         self.options.page_load_strategy = 'eager'
         self.options.binary_location = '/usr/bin/firefox'
         self.driver = webdriver.Firefox(options=self.options)
-        # self.driver.minimize_window()
         self.url = "https://mlh.io/seasons/2024/events"
 
     def scrape(self):

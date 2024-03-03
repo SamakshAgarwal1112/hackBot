@@ -3,3 +3,17 @@
   padding: 2rem;
   text-align: center;
 }
+
+a.disabled{
+  pointer-events: none;
+  cursor: pointer;
+}
+
+table, th, td{
+  border: 2px solid rgb(50, 50, 50);
+}
+
+td{
+  padding: 2px;
+  font-size: 0.7vw;
+}
