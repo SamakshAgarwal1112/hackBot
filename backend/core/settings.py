@@ -87,7 +87,7 @@ DATABASES = {
     }
 }
 
-database_url = "postgres://samaksh:8BHA6WTS7293LGGpvL1Fm0I5INWrYHr0@dpg-cnjgg3qcn0vc73c1hhe0-a/hackbotdb"
+database_url = os.environ.get('DATABASE_URL')
 DATABASES["default"] = dj_database_url.parse(database_url)
 
 
